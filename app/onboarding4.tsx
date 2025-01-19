@@ -32,10 +32,11 @@ const Onboarding4 = () => {
 
     useEffect(() => {
         if (progress >= 1) {
-            // navigate to the onboarding3 screen 
-            // navigate('onboarding3')
+            // navigate to the signup screen 
+            navigate('signup')
         }
     }, [progress, navigate]);
+
 
     return (
         <PageContainer>
@@ -59,7 +60,7 @@ const Onboarding4 = () => {
                     </View>
                     <ButtonFilled
                         title="Sign Up"
-                        onPress={() => navigate('onboarding2')}
+                        onPress={() => navigate('signup')}
                         style={Onboarding1Styles.nextButton}
                     />
                     <ButtonOutlined

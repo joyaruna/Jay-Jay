@@ -15,8 +15,13 @@ type Nav = {
 const Onboarding3 = () => {
     const { navigate } = useNavigation<Nav>();
     const [progress, setProgress] = useState(0);
+    const [skipActive, setSkipActive] = useState(false);
+    const [nextActive, setNextActive] = useState(false);
+
     // add useEffect
     useEffect(() => {
+        if (skipActive || nextActive) return; // Prevent execution if skipped
+
         const intervalId = setInterval(() => {
             setProgress((prevProgress) => {
                 if (prevProgress >= 1) {
@@ -28,14 +33,27 @@ const Onboarding3 = () => {
         }, 2000);
 
         return () => clearInterval(intervalId);
-    }, []);
+    }, [skipActive, nextActive]);
 
     useEffect(() => {
+        if (skipActive || nextActive) return; // Prevent execution if skipped
+
         if (progress >= 1) {
             // navigate to the onboarding3 screen 
             navigate('onboarding4')
         }
-    }, [progress, navigate]);
+    }, [progress, navigate, skipActive, nextActive]);
+
+    const skip = () => {
+        setProgress(0)
+        setSkipActive(true); // Disable the effects
+        navigate('login')
+    }
+    const next = () => {
+        setProgress(0)
+        setNextActive(true); // Disable the effects
+        navigate('onboarding4')
+    }
 
     return (
         <PageContainer>
@@ -58,12 +76,12 @@ const Onboarding3 = () => {
                     </View>
                     <ButtonFilled
                         title="Next"
-                        onPress={() => navigate('onboarding2')}
+                        onPress={next}
                         style={Onboarding1Styles.nextButton}
                     />
                     <ButtonOutlined
                         title="Skip"
-                        onPress={() => navigate('login')}
+                        onPress={skip}
                         style={Onboarding1Styles.skipButton}
                     />
                 </View>

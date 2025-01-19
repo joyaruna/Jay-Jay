@@ -15,8 +15,12 @@ type Nav = {
 const Onboarding2 = () => {
     const { navigate } = useNavigation<Nav>();
     const [progress, setProgress] = useState(0);
+    const [skipActive, setSkipActive] = useState(false);
+    const [nextActive, setNextActive] = useState(false);
     // add useEffect
     useEffect(() => {
+        if (skipActive || nextActive) return; // Prevent execution if skipped
+
         const intervalId = setInterval(() => {
             setProgress((prevProgress) => {
                 if (prevProgress >= 1) {
@@ -28,47 +32,61 @@ const Onboarding2 = () => {
         }, 2000);
 
         return () => clearInterval(intervalId);
-    }, []);
+    }, [skipActive, nextActive]);
 
     useEffect(() => {
+        if (skipActive || nextActive) return; // Prevent navigation if skipped
+
         if (progress >= 1) {
             // navigate to the onboarding3 screen 
             navigate('onboarding3')
         }
-    }, [progress, navigate]);
+    }, [progress, navigate, skipActive, nextActive]);
+
+    const skip = () => {
+        setProgress(0)
+        setSkipActive(true); // Disable the effects
+        navigate('login')
+    }
+
+    const next = () => {
+        setProgress(0)
+        setNextActive(true); // Disable the effects
+        navigate('onboarding3')
+    }
 
     return (
-            <PageContainer>
-                <View style={Onboarding1Styles.contentContainer}>
-                    <Image
-                        source={illustrations.onboarding2}
-                        resizeMode="cover"
-                        style={Onboarding1Styles.illustration}
-                    />
-                    <View style={Onboarding1Styles.buttonContainer}>
-                        <View style={Onboarding1Styles.titleContainer}>
-                            <Text style={[Onboarding1Styles.title]}>Welcome 👋</Text>
-                        </View>
-
-                        <Text style={[Onboarding1Styles.description]}>
-                            Discover adorable outfits and fun accesories for your little one                        </Text>
-
-                        <View style={Onboarding1Styles.dotsContainer}>
-                            {progress < 1 && <DotsView progress={progress} numDots={4} />}
-                        </View>
-                        <ButtonFilled
-                            title="Next"
-                            onPress={() => navigate('onboarding2')}
-                            style={Onboarding1Styles.nextButton}
-                        />
-                        <ButtonOutlined
-                            title="Skip"
-                            onPress={() => navigate('login')}
-                            style={Onboarding1Styles.skipButton}
-                        />
+        <PageContainer>
+            <View style={Onboarding1Styles.contentContainer}>
+                <Image
+                    source={illustrations.onboarding2}
+                    resizeMode="cover"
+                    style={Onboarding1Styles.illustration}
+                />
+                <View style={Onboarding1Styles.buttonContainer}>
+                    <View style={Onboarding1Styles.titleContainer}>
+                        <Text style={[Onboarding1Styles.title]}>Welcome 👋</Text>
                     </View>
+
+                    <Text style={[Onboarding1Styles.description]}>
+                        Discover adorable outfits and fun accesories for your little one                        </Text>
+
+                    <View style={Onboarding1Styles.dotsContainer}>
+                        {progress < 1 && <DotsView progress={progress} numDots={4} />}
+                    </View>
+                    <ButtonFilled
+                        title="Next"
+                        onPress={next}
+                        style={Onboarding1Styles.nextButton}
+                    />
+                    <ButtonOutlined
+                        title="Skip"
+                        onPress={skip}
+                        style={Onboarding1Styles.skipButton}
+                    />
                 </View>
-            </PageContainer>
+            </View>
+        </PageContainer>
     );
 };
 
