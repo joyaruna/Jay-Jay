@@ -119,7 +119,7 @@ const Signup = () => {
                     </View>
                     <ButtonFilled
                         title="Sign Up"
-                        onPress={() => navigate("fillyourprofile")}
+                        onPress={() => navigate("(tabs)")}
                         style={styles.button}
                     />
                     <View>

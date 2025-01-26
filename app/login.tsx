@@ -104,7 +104,7 @@ const Login = () => {
                     />
                     <ButtonFilled
                         title="Login"
-                        onPress={() => navigate("Dashboard")}
+                        onPress={() => navigate("(tabs)")}
                         style={styles.button}
                     />
                     <View>
