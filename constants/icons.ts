@@ -15,6 +15,14 @@ const notificationBell2 = require("../assets/icons/notification-bell2.png");
 const heartOutline = require("../assets/icons/heart-outline.png");
 const filter = require("../assets/icons/filter.png");
 const search2 = require("../assets/icons/search2.png");
+const welcomeLogo = require("../assets/images/welcome-logo.png");
+const boy = require("../assets/icons/boy.png");
+const girl = require("../assets/icons/girl.png");
+const clothes = require("../assets/icons/clothes.png");
+const shoes = require("../assets/icons/shoes.png");
+const accesories = require("../assets/icons/accesories.png");
+const heart5 = require("../assets/icons/heart5.png");
+const heart3Outline = require("../assets/icons/heart3-outline.png");
 
 export default {
     email,
@@ -33,5 +41,13 @@ export default {
     notificationBell2,
     heartOutline,
     filter,
-    search2
+    search2,
+    welcomeLogo,
+    boy,
+    girl,
+    clothes,
+    shoes,
+    accesories,
+    heart5,
+    heart3Outline
 }

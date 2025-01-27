@@ -3,7 +3,10 @@ import React, { useState } from "react";
 import { FlatList, Image, ListRenderItemInfo, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { ScrollView } from 'react-native-virtualized-view';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { banners } from "@/data";
+import { banners, categories, popularProducts } from "@/data";
+import SubHeaderItem from "@/components/SubHeaderItem";
+import Category from "@/components/Category";
+import ProductCard from "@/components/ProductCard";
 
 interface BannerItem {
   id: number;
@@ -27,7 +30,7 @@ const Home = () => {
       <View style={styles.headerContainer}>
         <View style={styles.viewLeft}>
           <Image
-            source={images.user1}
+            source={images.welcomeLogo}
             resizeMode='contain'
             style={styles.userIcon}
           />
@@ -173,6 +176,116 @@ const Home = () => {
     )
   }
 
+  /**
+* Render categories
+*/
+  const renderCategories = () => {
+    return (
+      <View>
+        <SubHeaderItem
+          title="Categories"
+          navTitle="See all"
+          onPress={() => navigation.navigate("categories")}
+        />
+        <FlatList
+          data={categories.slice(1, 9)}
+          keyExtractor={(item, index) => index.toString()}
+          horizontal={false}
+          numColumns={4} // Render two items per row
+          renderItem={({ item }) => (
+            <Category
+              name={item.name}
+              icon={item.icon}
+              onPress={item.onPress ? () => navigation.navigate(item.onPress) : undefined}
+            />
+          )}
+        />
+      </View>
+    )
+  }
+
+  /**
+* render popular products
+*/
+  const renderPopularProducts = () => {
+    const [selectedCategories, setSelectedCategories] = useState<any[]>(["0"]);
+
+    const filteredProducts = popularProducts.filter(product => selectedCategories.includes("0") || selectedCategories.includes(product.categoryId));
+
+    // Category item
+    const renderCategoryItem = ({ item }: { item: { id: string; name: string } }) => (
+      <TouchableOpacity
+        style={{
+          backgroundColor: selectedCategories.includes(item.id) ? COLORS.pink : "transparent",
+          padding: 10,
+          marginVertical: 5,
+          borderColor: COLORS.navyBlue,
+          borderWidth: 1.5,
+          borderRadius: 24,
+          marginRight: 12,
+        }}
+        onPress={() => toggleCategory(item.id)}>
+        <Text style={{
+          color: selectedCategories.includes(item.id) ? COLORS.white : COLORS.navyBlue
+        }}>{item.name}</Text>
+      </TouchableOpacity>
+    );
+
+    // Toggle category selection
+    const toggleCategory = (categoryId: string) => {
+      const updatedCategories = [...selectedCategories];
+      const index = updatedCategories.indexOf(categoryId);
+
+      if (index === -1) {
+        updatedCategories.push(categoryId);
+      } else {
+        updatedCategories.splice(index, 1);
+      }
+
+      setSelectedCategories(updatedCategories);
+    };
+    return (
+      <View>
+        <SubHeaderItem
+          title="Most Popular"
+          navTitle="See All"
+          onPress={() => navigation.navigate("mostpopularproducts")}
+        />
+        <FlatList
+          data={categories}
+          keyExtractor={item => item.id}
+          showsHorizontalScrollIndicator={false}
+          horizontal
+          renderItem={renderCategoryItem}
+        />
+        <View style={{
+          backgroundColor: 'transparent',
+          marginVertical: 16,
+        }}>
+          <FlatList
+            data={filteredProducts}
+            keyExtractor={item => item.id}
+            numColumns={2}
+            columnWrapperStyle={{ gap: 16 }}
+            showsVerticalScrollIndicator={false}
+            renderItem={({ item }) => {
+              return (
+                <ProductCard
+                  name={item.name}
+                  image={item.image}
+                  numSolds={item.numSolds}
+                  price={item.price}
+                  rating={item.rating}
+                  onPress={() => navigation.navigate(item.navigate)}
+                />
+              )
+            }}
+          />
+        </View>
+      </View>
+    )
+  }
+
   return (
     <SafeAreaView style={[styles.area]}>
       <View style={[styles.container]}>
@@ -180,6 +293,8 @@ const Home = () => {
         {renderSearchBar()}
         <ScrollView showsVerticalScrollIndicator={false}>
           {renderBanner()}
+          {renderCategories()}
+          {renderPopularProducts()}
         </ScrollView>
       </View>
     </SafeAreaView>
