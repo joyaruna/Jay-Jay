@@ -81,7 +81,7 @@ export const popularProducts = [
         rating: 4.5,
         quantity: 15000,
         numSolds: 6321,
-        categoryId: "11",
+        categoryId: "2",
         navigate: "vasedetails"
     },
     {
@@ -93,7 +93,7 @@ export const popularProducts = [
         rating: 4.5,
         quantity: 1300,
         numSolds: 9373,
-        categoryId: "5",
+        categoryId: "2",
         navigate: "lampdetails"
     },
     {
@@ -105,7 +105,7 @@ export const popularProducts = [
         rating: 4.3,
         quantity: 1300,
         numSolds: 426,
-        categoryId: "6",
+        categoryId: "2",
         navigate: "cupboarddetails"
     },
     {
@@ -117,7 +117,7 @@ export const popularProducts = [
         rating: 4.4,
         quantity: 8500,
         numSolds: 5621,
-        categoryId: "4",
+        categoryId: "1",
         navigate: "kitchendetails"
     },
     {
@@ -129,7 +129,7 @@ export const popularProducts = [
         rating: 4.3,
         quantity: 10000,
         numSolds: 4236,
-        categoryId: "5",
+        categoryId: "1",
         navigate: "lampdetails"
     },
     {
@@ -153,7 +153,7 @@ export const popularProducts = [
         rating: 4.9,
         quantity: 8500,
         numSolds: 459,
-        categoryId: "3",
+        categoryId: "2",
         navigate: "tabledetails"
     },
     {
@@ -165,7 +165,7 @@ export const popularProducts = [
         rating: 4.9,
         quantity: 60000,
         numSolds: 1200,
-        categoryId: "1",
+        categoryId: "2",
         navigate: "sofadetails"
     },
     {
@@ -177,7 +177,7 @@ export const popularProducts = [
         rating: 4.9,
         quantity: 50003,
         numSolds: 1230,
-        categoryId: "2",
+        categoryId: "1",
         navigate: "chairdetails"
     },
     {
@@ -189,7 +189,7 @@ export const popularProducts = [
         rating: 4.8,
         quantity: 35000,
         numSolds: 987,
-        categoryId: "3",
+        categoryId: "1",
         navigate: "tabledetails"
     },
     {
@@ -201,19 +201,19 @@ export const popularProducts = [
         rating: 4.2,
         quantity: 500,
         numSolds: 562,
-        categoryId: "4",
+        categoryId: "2",
         navigate: "kitchendetails"
     },
     {
         id: "12",
-        name: "Brown Romper",
+        name: "Girl Brown Romper",
         image: images.cloth12,
         price: "75.00",
         numReviews: 150,
         rating: 4.5,
         quantity: 28000,
         numSolds: 632,
-        categoryId: "5",
+        categoryId: "2",
         navigate: "lampdetails"
     },
     {
@@ -225,7 +225,7 @@ export const popularProducts = [
         rating: 4.5,
         quantity: 4200,
         numSolds: 752,
-        categoryId: "3",
+        categoryId: "2",
         navigate: "tabledetails"
     },
     {
@@ -249,7 +249,7 @@ export const popularProducts = [
         rating: 4.7,
         quantity: 4200,
         numSolds: 1092,
-        categoryId: "2",
+        categoryId: "1",
         navigate: "chairdetails"
     },
     {
@@ -261,7 +261,7 @@ export const popularProducts = [
         rating: 4.7,
         quantity: 4200,
         numSolds: 1092,
-        categoryId: "2",
+        categoryId: "1",
         navigate: "chairdetails"
     },
     {
@@ -273,7 +273,7 @@ export const popularProducts = [
         rating: 4.7,
         quantity: 4200,
         numSolds: 1092,
-        categoryId: "2",
+        categoryId: "1",
         navigate: "chairdetails"
     },
     {
@@ -285,7 +285,7 @@ export const popularProducts = [
         rating: 4.7,
         quantity: 4200,
         numSolds: 1092,
-        categoryId: "2",
+        categoryId: "1",
         navigate: "chairdetails"
     },
 ]

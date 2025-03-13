@@ -14,7 +14,8 @@ const styles = StyleSheet.create({
         // height: SIZES.width * 0.96,
         // width: SIZES.width * 0.96,
         position: "absolute",
-        bottom: 360
+        bottom: 360,
+        width:'100%'
     },
     ornament: {
         position: "absolute",
